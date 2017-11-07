@@ -1,0 +1,109 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, .title-color {
+  color: #b35f00;
+}
+h1 {
+  font-weight: bold;
+}
+h4, .secondary-color {
+  color: #c1db76;
+}
+.full-width-bg {
+    width: 100%;
+}
+.navbar-margin-offset {
+    margin-top: -20px;
+}
+.container, .container-fluid {
+  padding: 0;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+  border-radius: 0;
+}
+.jumbotron {
+  background: #532F8C;
+  color: white;
+  padding-bottom: 80px; 
+}
+.jumbotron .btn-primary {
+  background: #845ac7;
+  border-color: #845ac7; 
+}
+.jumbotron .btn-primary:hover {
+  background: #7646c1; 
+}
+.jumbotron p {
+  color: #d9ccee;
+  max-width: 75%;
+  margin: 1em auto 2em; 
+}
+.navbar + .container-fluid.jumbotron {
+  margin-top: -20px; 
+}
+.jumbotron .lang-logo {
+  display: block;
+  background: #B01302;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border: 2px solid white; 
+}
+.jumbotron .lang-logo img {
+  max-width: 100%; 
+}
+p {
+  font-size: 18px;
+}
+.row {
+  padding: 15px;
+}
+.bookReport1-row1, .bookReport1-row3 {
+  background: #456578;
+}
+.bookReport1-row2, .bookReport1 {
+  background: #478ea0;
+}
+.bookReport1 .navbar {
+  margin-bottom: 0;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+}
+.bookReport1-row1, .bookReport1-row2 {
+  border-bottom: 3px solid #132747;
+}
+.no-dots li {
+  list-style-type: none;
+}
+.underlay {
+  background: #478ea0;
+  padding: 15px;
+  box-shadow: 0px 0px 5px 5px inset;
+}
+.underlay + p, .underlay + h2,  {
+  z-index: 3;
+}
+#footer {
+  background: #132747;
+  width: 100%;
+  padding: 5px;
+}
+#footer p {
+  color: white;
+  font-size: 12px;
+  margin: 0;
+}
+img {
+  border: 1px solid #132747;
+}
+.body-img {
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.2);
+}
