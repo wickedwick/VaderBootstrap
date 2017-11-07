@@ -14,7 +14,7 @@ export default class NavBar extends Component {
                     <div className="navbar-header">
                     <a className="navbar-brand" href="/">Vader Bootstrap 1.0</a>
                     </div>
-                    <div className="navbar-form">
+                    <div className="navbar-form navbar-right">
 
                         {!isAuthenticated &&
                         <Login

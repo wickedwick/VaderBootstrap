@@ -91,7 +91,7 @@ export function logoutUser() {
 export function fetchQuote() {
     return {
         [CALL_API]: {
-            endpoint: 'quote/random',
+            endpoint: 'api/quote/random',
             types: [QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE]
         }
     };
@@ -100,7 +100,7 @@ export function fetchQuote() {
 export function fetchSecretQuote() {
     return {
         [CALL_API]: {
-            endpoint: 'quote/secret',
+            endpoint: 'api/quote/secret',
             authenticated: true,
             types: [QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE]
         }

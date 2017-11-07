@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:28826/api/Account/login';
+const BASE_URL = 'http://localhost:28826/';
 
 function callApi(endpoint, authenticated) {
     let token = localStorage.getItem('access_token') || null;
@@ -22,23 +22,25 @@ function callApi(endpoint, authenticated) {
             if (!response.ok) {
                 return Promise.reject(text);
             }
+            console.log(text);
             return text;
-        });
+        }).catch(err => console.log(err));
 }
 
 export const CALL_API = Symbol('Call API');
 
 export default store => next => action => {
     const callAPI = action[CALL_API];
-    if (store === null) store = null;
     if (typeof callAPI === 'undefined') {
         return next(action);
     }
 
     let { endpoint, types, authenticated } = callAPI;
 
-    const [ successType, errorType ] = types;
-
+    const [ requestType, successType, errorType ] = types;
+    types.forEach(function(element) {
+        console.log(element);
+    }, this);
     return callApi(endpoint, authenticated).then(
         response =>
             next({

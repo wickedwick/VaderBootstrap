@@ -44,18 +44,22 @@ function quotes(state = {
         quote: '',
         authenticated: false
     }, action) {
+    console.log("Type: " + action.type);
     switch (action.type) {
         case QUOTE_REQUEST:
+            console.log("Requesting...");
             return Object.assign({}, state, {
                 isFetching: true
             });
         case QUOTE_SUCCESS:
+            console.log("Success " + action);
             return Object.assign({}, state, {
                 isFetching: false,
                 quote: action.response,
                 authenticated: action.authenticated || false
             });
         case QUOTE_FAILURE:
+            console.log("Failure");
             return Object.assign({}, state, {
                 isFetching: false
             });

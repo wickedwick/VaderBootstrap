@@ -7,13 +7,20 @@ export default class Quotes extends Component {
 
         return (
             <div>
+                <div className="container-fluid navbar-margin-offset">
+                    <div className="jumbotron text-center">
+                    <h1>Hello {this.props.user ? this.props.user.unique_name : ''}</h1>
+                    <h2>This is a base application with common features</h2>
+                    <h3>Your site will be designed and will have content added soon</h3>
+                    </div>
+                </div>
                 <div className="col-sm-3">
                     <button onClick={onQuoteClick} className="btn btn-primary">
                         Get Quote
                     </button>
                 </div>
 
-                { isAuthenticated &&
+                {isAuthenticated &&
                     <div className="col-sm-3">
                         <button onClick={onSecretQuoteClick} className="btn btn-primary">
                             Get Secret Quote
@@ -22,13 +29,13 @@ export default class Quotes extends Component {
                 }
 
                 <div className="col-sm-6">
-                    { quote && !isSecretQuote &&
+                    {quote && !isSecretQuote &&
                         <div>
                             <blockquote>{quote}</blockquote>
                         </div>
                     }
 
-                    { quote && isAuthenticated && isSecretQuote && 
+                    {quote && isAuthenticated && isSecretQuote && 
                         <div>
                             <span className="label label-danger">Secret Quote</span>
                             <hr/>
