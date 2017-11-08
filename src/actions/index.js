@@ -8,6 +8,7 @@ import { CALL_API } from '../middleware/api';
 export const QUOTE_REQUEST = 'QUOTE_REQUEST';
 export const QUOTE_SUCCESS = 'QUOTE_SUCCESS';
 export const QUOTE_FAILURE = 'QUOTE_FAILURE';
+export const AUTH_CHECK = 'AUTH_CHECK';
 
 function requestLogin(creds) {
     return {
@@ -59,6 +60,18 @@ export function loginUser(creds) {
                     dispatch(receiveLogin(user));
                 }
             });
+    };
+}
+
+function authCheck() {
+    return {
+        type: AUTH_CHECK
+    };
+}
+
+export function checkUserClaims() {
+    return dispatch => {
+        dispatch(authCheck())
     };
 }
 

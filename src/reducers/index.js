@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 
 import {
     LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-    QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE
+    QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE, AUTH_CHECK
 } from '../actions';
 
 function auth(state = {
@@ -65,21 +65,20 @@ function quotes(state = {
 }
 
 function userInfo(state = {
-        username: '',
+        username: 'Guest',
         role: 'Stormtrooper'
     }, action) {
     switch (action.type) {
-        case LOGIN_SUCCESS:
+        case LOGIN_SUCCESS, AUTH_CHECK:
             const jwt = localStorage.getItem('id_token');
             let decodedJwt = jwt ? jwt_decode(jwt) : null;
-            console.log(decodedJwt.role);
             return Object.assign({}, state, {
                 username: decodedJwt ? decodedJwt.unique_name : '',
                 role: decodedJwt ? decodedJwt.role : ''
             });
-        case LOGOUT_SUCCESS:
+        case LOGOUT_SUCCESS, LOGIN_FAILURE, QUOTE_FAILURE:
             return Object.assign({}, state, {
-                username: '',
+                username: 'Guest',
                 role: 'Stormtrooper'
             });
         default:
