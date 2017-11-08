@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class Quotes extends Component {
     render() {
-        const { onQuoteClick, onSecretQuoteClick, isAuthenticated, quote, isSecretQuote } = this.props;
+        const { onQuoteClick, onSecretQuoteClick, isAuthenticated, quote, isSecretQuote, role } = this.props;
 
         return (
             <div>
@@ -35,7 +35,7 @@ export default class Quotes extends Component {
                         </div>
                     }
 
-                    {quote && isAuthenticated && isSecretQuote && 
+                    {quote && isAuthenticated && isSecretQuote && (role !== 'Stormtrooper') &&
                         <div>
                             <span className="label label-danger">Secret Quote</span>
                             <hr/>
@@ -53,5 +53,6 @@ Quotes.propTypes = {
     onSecretQuoteClick: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     quote: PropTypes.string,
-    isSecretQuote: PropTypes.bool.isRequired
+    isSecretQuote: PropTypes.bool.isRequired,
+    role: PropTypes.string
 };

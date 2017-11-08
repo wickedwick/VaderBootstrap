@@ -1,5 +1,6 @@
 // Set up your root reducer here...
 import { combineReducers } from 'redux';
+import jwt_decode from 'jwt-decode';
 
 import {
     LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
@@ -14,8 +15,7 @@ function auth(state = {
         case LOGIN_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true,
-                isAuthenticated: false,
-                user: action.creds
+                isAuthenticated: false
             });
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
@@ -64,9 +64,33 @@ function quotes(state = {
     }
 }
 
+function userInfo(state = {
+        username: '',
+        role: 'Stormtrooper'
+    }, action) {
+    switch (action.type) {
+        case LOGIN_SUCCESS:
+            const jwt = localStorage.getItem('id_token');
+            let decodedJwt = jwt ? jwt_decode(jwt) : null;
+            console.log(decodedJwt.role);
+            return Object.assign({}, state, {
+                username: decodedJwt ? decodedJwt.unique_name : '',
+                role: decodedJwt ? decodedJwt.role : ''
+            });
+        case LOGOUT_SUCCESS:
+            return Object.assign({}, state, {
+                username: '',
+                role: 'Stormtrooper'
+            });
+        default:
+            return state;
+    }
+}
+
 const quotesApp = combineReducers({
     auth,
-    quotes
+    quotes,
+    userInfo
 });
 
 export default quotesApp;

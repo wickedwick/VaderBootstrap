@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 class App extends Component {
     render() {
-        const { dispatch, quote, isAuthenticated, errorMessage, isSecretQuote } = this.props;
+        const { dispatch, quote, isAuthenticated, errorMessage, isSecretQuote, role } = this.props;
         return (
             <div>
                 <NavBar isAuthenticated={isAuthenticated}
@@ -21,6 +21,7 @@ class App extends Component {
                             isAuthenticated={isAuthenticated}
                             quote={quote}
                             isSecretQuote={isSecretQuote}
+                            role={role}
                     />
                 </div>    
             </div>
@@ -33,19 +34,23 @@ App.propTypes = {
     quote: PropTypes.string,
     isAuthenticated: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string,
-    isSecretQuote: PropTypes.bool.isRequired
+    isSecretQuote: PropTypes.bool.isRequired,
+    role: PropTypes.string
 };
 
 function mapStateToProps(state) {
-    const { quotes, auth } = state;
+    const { quotes, auth, userInfo } = state;
     const { quote, authenticated } = quotes;
     const { isAuthenticated, errorMessage } = auth;
+    const { unique_name, role } = userInfo;
 
     return {
         quote,
         isSecretQuote: authenticated,
         isAuthenticated,
-        errorMessage
+        errorMessage,
+        unique_name,
+        role
     };
 }
 
