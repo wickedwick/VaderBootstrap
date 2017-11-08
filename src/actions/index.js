@@ -54,8 +54,8 @@ export function loginUser(creds) {
                     dispatch(loginError(user.message));
                     return Promise.reject(user);
                 } else {
-                    localStorage.setItem('id_token', user.id_token);
-                    localStorage.setItem('access_token', user.access_token);
+                    localStorage.setItem('id_token', user);
+                    localStorage.setItem('access_token', user);
                     dispatch(receiveLogin(user));
                 }
             });

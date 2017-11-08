@@ -17,7 +17,7 @@ class App extends Component {
                 />
                 <div className="container-fluid navbar-margin-offset">
                     <Quotes onQuoteClick={() => dispatch(fetchQuote())}
-                            onSecretQuoteClick={() => dispatch(fetchSecretQuote)}
+                            onSecretQuoteClick={() => dispatch(fetchSecretQuote())}
                             isAuthenticated={isAuthenticated}
                             quote={quote}
                             isSecretQuote={isSecretQuote}

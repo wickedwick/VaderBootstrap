@@ -22,7 +22,6 @@ function callApi(endpoint, authenticated) {
             if (!response.ok) {
                 return Promise.reject(text);
             }
-            console.log(text);
             return text;
         }).catch(err => console.log(err));
 }
@@ -38,9 +37,7 @@ export default store => next => action => {
     let { endpoint, types, authenticated } = callAPI;
 
     const [ requestType, successType, errorType ] = types;
-    types.forEach(function(element) {
-        console.log(element);
-    }, this);
+    
     return callApi(endpoint, authenticated).then(
         response =>
             next({
