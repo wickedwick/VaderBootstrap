@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Jumbotron from '../components/Jumbotron';
 import Home from '../components/Home';
+import Admin from '../components/Admin';
 
 class App extends Component {
     render() {
@@ -18,9 +19,6 @@ class App extends Component {
                 <NavBar isAuthenticated={isAuthenticated}
                         errorMessage={errorMessage}
                         dispatch={dispatch}
-                />
-                <Jumbotron username={username}
-                           isAuthenticated={isAuthenticated}
                 />
                 <div className="container-fluid navbar-margin-offset">
                     <BrowserRouter>
@@ -34,6 +32,13 @@ class App extends Component {
                                     isSecretQuote={isSecretQuote}
                                     role={role}
                                 />} 
+                            />
+                            <Route path="/admin"
+                                render={(props) => <Admin 
+                                    isAuthenticated={isAuthenticated} 
+                                    role={role} 
+                                    username={username}
+                                />}
                             />
                         </div>
                     </BrowserRouter>

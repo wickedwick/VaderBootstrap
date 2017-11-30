@@ -8,6 +8,7 @@ import quotesApp from './reducers';
 import thunkMiddleware from 'redux-thunk';
 import api from './middleware/api';
 import 'bootstrap';
+import Footer from './components/Footer';
 
 let createStoreWithMiddleware = applyMiddleware(thunkMiddleware, api)(createStore);
 

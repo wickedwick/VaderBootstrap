@@ -71,7 +71,7 @@ function authCheck() {
 
 export function checkUserClaims() {
     return dispatch => {
-        dispatch(authCheck())
+        dispatch(authCheck());
     };
 }
 

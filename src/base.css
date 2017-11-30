@@ -107,3 +107,22 @@ img {
   padding: 5px;
   background: rgba(255, 255, 255, 0.2);
 }
+
+.footer-bar-bottom {
+  background-color: #272727;
+  color: #9d9d9d;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-bar-bottom p {
+  margin: 0;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.align-right {
+  text-align: right;
+}
