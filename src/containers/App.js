@@ -9,6 +9,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Jumbotron from '../components/Jumbotron';
 import Home from '../components/Home';
 import Admin from '../components/Admin';
+import Footer from '../components/Footer';
 
 class App extends Component {
     render() {
@@ -43,6 +44,7 @@ class App extends Component {
                         </div>
                     </BrowserRouter>
                 </div> 
+                <Footer clientName="Wickham Design & Development"/>
             </div>
         );
     }

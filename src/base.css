@@ -26,6 +26,7 @@ h4, .secondary-color {
 }
 .jumbotron {
   background: #532F8C;
+  background-image: url("images/12.jpg");
   color: white;
   padding-bottom: 80px; 
 }
@@ -125,4 +126,25 @@ img {
 
 .align-right {
   text-align: right;
+}
+
+.home-container-1 {
+  background-color: #532F8C;
+  margin-top: -30px;
+}
+
+.container-bg {
+  width: 100%;
+}
+
+.home-container-1 h1 {
+  color: white;
+}
+
+.gallery {
+  padding: 10px;
+}
+
+.spacer {
+  margin-top: 10px;
 }
