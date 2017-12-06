@@ -72,11 +72,13 @@ function userInfo(state = {
         case LOGIN_SUCCESS, AUTH_CHECK:
             const jwt = localStorage.getItem('id_token');
             let decodedJwt = jwt ? jwt_decode(jwt) : null;
+            // jwt check
             return Object.assign({}, state, {
                 username: decodedJwt ? decodedJwt.unique_name : '',
                 role: decodedJwt ? decodedJwt.role : ''
             });
         case LOGOUT_SUCCESS, LOGIN_FAILURE, QUOTE_FAILURE:
+            localStorage.removeItem('id_token');
             return Object.assign({}, state, {
                 username: 'Guest',
                 role: 'Stormtrooper'

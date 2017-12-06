@@ -44,7 +44,7 @@ class App extends Component {
                         </div>
                     </BrowserRouter>
                 </div> 
-                <Footer clientName="Wickham Design & Development"/>
+                <Footer clientName="Wickham Design & Development" rightText="Contact us today!"/>
             </div>
         );
     }

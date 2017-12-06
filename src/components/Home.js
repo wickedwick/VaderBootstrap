@@ -3,6 +3,34 @@ import PropTypes from 'prop-types';
 import Jumbotron from '../components/Jumbotron';
 import GalleryComponent from '../components/GalleryComponent';
 
+export default class Home extends Component {
+    render() {
+        const { username, isAuthenticated } = this.props;
+        
+        return (
+            <div>
+                <Jumbotron username={username}
+                    isAuthenticated={isAuthenticated}
+                />
+                <div className="home-container-1 container-bg">
+                    <div className="container navbar-margin-offset">
+                        <div className="col-xs-12">
+                            <h1>Welcome to your homepage</h1>
+                            <GalleryComponent imageArray={Images}/>
+                        </div>
+                        <div className="spacer">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+Home.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    username: PropTypes.string
+};
+
 const Images = 
 [{
         src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
@@ -50,31 +78,3 @@ const Images =
         thumbnailWidth: 320,
         thumbnailHeight: 212
 }];
-
-export default class Home extends Component {
-    render() {
-        const { username, isAuthenticated } = this.props;
-        
-        return (
-            <div>
-                <Jumbotron username={username}
-                    isAuthenticated={isAuthenticated}
-                />
-                <div className="home-container-1 container-bg">
-                    <div className="container navbar-margin-offset">
-                        <div className="col-xs-12">
-                            <h1>Welcome to your homepage</h1>
-                            <GalleryComponent imageArray={Images}/>
-                        </div>
-                        <div className="spacer">&nbsp;</div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-Home.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    username: PropTypes.string
-};
