@@ -16,7 +16,7 @@ export default class Home extends Component {
                     <div className="container navbar-margin-offset">
                         <div className="col-xs-12">
                             <h1>Welcome to your homepage</h1>
-                            <GalleryComponent imageArray={Images}/>
+                            <GalleryComponent title="Gallery components are included." imageArray={Images}/>
                         </div>
                         <div className="spacer">&nbsp;</div>
                     </div>

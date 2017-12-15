@@ -1,8 +1,13 @@
-
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
+
+#app, #app > div {
+  height: 100%;
+}
+
 h1, h2, .title-color {
   color: #b35f00;
 }
@@ -27,6 +32,9 @@ h4, .secondary-color {
 .jumbotron {
   background: #532F8C;
   background-image: url("images/12.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;    
   color: white;
   padding-bottom: 80px; 
 }
@@ -122,6 +130,12 @@ img {
   margin: 0;
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-extend-to-bottom {
+  margin: 0;
+  height: 100%;
+  background-color: #272727;
 }
 
 .align-right {

@@ -9,6 +9,7 @@ export const QUOTE_REQUEST = 'QUOTE_REQUEST';
 export const QUOTE_SUCCESS = 'QUOTE_SUCCESS';
 export const QUOTE_FAILURE = 'QUOTE_FAILURE';
 export const AUTH_CHECK = 'AUTH_CHECK';
+import jwt_decode from 'jwt-decode';
 
 function requestLogin(creds) {
     return {

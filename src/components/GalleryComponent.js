@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 export default class GalleryComponent extends Component {
     render() {
-        const { imageArray } = this.props;
+        const { imageArray, title } = this.props;
         return (
             <div className="gallery">
                 <div>
-                    <Gallery images={imageArray}/>
+                    <h2>Gallery components are included.</h2>
+                    <Gallery title={title} images={imageArray}/>
                 </div>
             </div>
         );
@@ -16,5 +17,6 @@ export default class GalleryComponent extends Component {
 }
 
 GalleryComponent.propTypes = {
-    imageArray: PropTypes.array
+    imageArray: PropTypes.array,
+    title: PropTypes.string
 };

@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuote, fetchSecretQuote, checkUserClaims } from '../actions';
 //import Login from '../components/Login';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/TopComponents/NavBar';
 import Quotes from '../components/Quotes';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Jumbotron from '../components/Jumbotron';
 import Home from '../components/Home';
 import Admin from '../components/Admin';
-import Footer from '../components/Footer';
+import Footer from '../components/BottomComponents/Footer';
+import FooterMedium from '../components/BottomComponents/FooterMedium';
 
 class App extends Component {
     render() {
@@ -44,7 +45,7 @@ class App extends Component {
                         </div>
                     </BrowserRouter>
                 </div> 
-                <Footer clientName="Wickham Design & Development" rightText="Contact us today!"/>
+                <FooterMedium clientName="Wickham Design & Development" />
             </div>
         );
     }
