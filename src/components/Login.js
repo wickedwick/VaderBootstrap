@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 export default class Login extends Component {
   handleClick(event) {
-    const eventThing = event;
-    eventThing === null;
     const username = this.refs.username;
     const password = this.refs.password;
     const creds = { username: username.value.trim(), password: password.value.trim() };

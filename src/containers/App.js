@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchQuote, fetchSecretQuote, checkUserClaims } from '../actions';
+import { fetchQuote, fetchSecretQuote, checkUserClaims, signupUser } from '../actions';
 //import Login from '../components/Login';
 import NavBar from '../components/TopComponents/NavBar';
 import Quotes from '../components/Quotes';
@@ -11,6 +11,7 @@ import Home from '../components/Home';
 import Admin from '../components/Admin';
 import Footer from '../components/BottomComponents/Footer';
 import FooterMedium from '../components/BottomComponents/FooterMedium';
+import Signup from '../components/Signup';
 
 class App extends Component {
     render() {
@@ -25,7 +26,13 @@ class App extends Component {
                 <div className="container-fluid navbar-margin-offset">
                     <BrowserRouter>
                         <div>
-                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/"
+                                render={(props) => <Home isAuthenticated={isAuthenticated}
+                                    username={username} />}
+                            />
+                            <Route path="/signup" 
+                                render={(props) => <Signup onSignupClick={signupObj => dispatch(signupUser(signupObj))}/>}
+                            />
                             <Route path="/quotes"
                                 render={(props) => <Quotes onQuoteClick={() => dispatch(fetchQuote())}
                                     onSecretQuoteClick={() => dispatch(fetchSecretQuote())}

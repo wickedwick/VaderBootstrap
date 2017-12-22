@@ -29,6 +29,8 @@
   "author": "Travis L. Wickham",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "3.3.7",
+    "jquery": "3.2.1",
     "jwt-decode": "2.2.0",
     "object-assign": "4.1.0",
     "react": "16.0.0",

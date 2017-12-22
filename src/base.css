@@ -162,3 +162,11 @@ img {
 .spacer {
   margin-top: 10px;
 }
+
+.centered {
+  margin: 0 auto;
+}
+
+.container > div {
+  padding: 10px;
+}
