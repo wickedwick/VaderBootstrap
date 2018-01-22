@@ -4,7 +4,8 @@ import jwt_decode from 'jwt-decode';
 
 import {
     LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-    QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE, AUTH_CHECK
+    QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE, AUTH_CHECK, GALLERY_REQUEST,
+    GALLERY_SUCCESS, GALLERY_FAILURE
 } from '../actions';
 
 function auth(state = {
@@ -88,10 +89,35 @@ function userInfo(state = {
     }
 }
 
+function getGalleryImages(state = {
+        title: 'home',
+        isFetching: false,
+        images: []
+    }, action) {
+    switch (action.type) {
+        case GALLERY_SUCCESS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                images: action.response
+            });
+        case GALLERY_REQUEST:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case GALLERY_FAILURE:
+            return Object.assign({}, state, {
+                isFetching: false
+            });
+        default:
+            return state;
+    }
+}
+
 const quotesApp = combineReducers({
     auth,
     quotes,
-    userInfo
+    userInfo,
+    getGalleryImages
 });
 
 export default quotesApp;

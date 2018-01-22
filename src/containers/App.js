@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchQuote, fetchSecretQuote, checkUserClaims } from '../actions';
+import { fetchQuote, fetchSecretQuote, checkUserClaims, fetchGallery } from '../actions';
 //import Login from '../components/Login';
 import NavBar from '../components/TopComponents/NavBar';
 import Quotes from '../components/Quotes';
@@ -10,11 +10,11 @@ import Jumbotron from '../components/Jumbotron';
 import Home from '../components/Home';
 import Admin from '../components/Admin';
 import Footer from '../components/BottomComponents/Footer';
-import FooterMedium from '../components/BottomComponents/FooterMedium';
 
 class App extends Component {
     render() {
-        const { dispatch, quote, isAuthenticated, errorMessage, isSecretQuote, role, username } = this.props;
+        const { images, dispatch, quote, isAuthenticated, errorMessage, isSecretQuote, role, username } = this.props;
+        const copyrightMsg = (new Date()).getFullYear() + " Wickham Design & Development ";
         dispatch(checkUserClaims());
         return (
             <div>
@@ -25,7 +25,13 @@ class App extends Component {
                 <div className="container-fluid navbar-margin-offset">
                     <BrowserRouter>
                         <div>
-                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/" 
+                                render={(props) => <Home
+                                    isAuthenticated={isAuthenticated}
+                                    username={username}
+                                    images={fetchGallery('home')}
+                                />}
+                            />
                             <Route path="/quotes"
                                 render={(props) => <Quotes onQuoteClick={() => dispatch(fetchQuote())}
                                     onSecretQuoteClick={() => dispatch(fetchSecretQuote())}
@@ -45,7 +51,7 @@ class App extends Component {
                         </div>
                     </BrowserRouter>
                 </div> 
-                <FooterMedium clientName="Wickham Design & Development" />
+                <Footer clientName={copyrightMsg} />
             </div>
         );
     }
@@ -62,7 +68,7 @@ App.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const { quotes, auth, userInfo } = state;
+    const { quotes, auth, userInfo, getGalleryImages } = state;
     const { quote, authenticated } = quotes;
     const { isAuthenticated, errorMessage } = auth;
     const { username, role } = userInfo;
