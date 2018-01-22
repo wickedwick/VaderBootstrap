@@ -166,3 +166,11 @@ img {
 .main-content {
   margin-bottom: 20px;
 }
+
+.centered {
+  margin: 0 auto;
+}
+
+.container > div {
+  padding: 10px;
+}

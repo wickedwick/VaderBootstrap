@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { fetchQuote, fetchSecretQuote, checkUserClaims, fetchGallery } from '../actions';
+=======
+import { fetchQuote, fetchSecretQuote, checkUserClaims, signupUser } from '../actions';
+>>>>>>> 3a3f85e4629d622eb77689a986b93365cd7c67c1
 //import Login from '../components/Login';
 import NavBar from '../components/TopComponents/NavBar';
 import Quotes from '../components/Quotes';
@@ -10,6 +14,8 @@ import Jumbotron from '../components/Jumbotron';
 import Home from '../components/Home';
 import Admin from '../components/Admin';
 import Footer from '../components/BottomComponents/Footer';
+import FooterMedium from '../components/BottomComponents/FooterMedium';
+import Signup from '../components/Signup';
 
 class App extends Component {
     render() {
@@ -31,6 +37,9 @@ class App extends Component {
                                     username={username}
                                     images={fetchGallery('home')}
                                 />}
+                            />
+                            <Route path="/signup" 
+                                render={(props) => <Signup onSignupClick={signupObj => dispatch(signupUser(signupObj))}/>}
                             />
                             <Route path="/quotes"
                                 render={(props) => <Quotes onQuoteClick={() => dispatch(fetchQuote())}

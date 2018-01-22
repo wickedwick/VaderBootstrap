@@ -5,7 +5,8 @@ import jwt_decode from 'jwt-decode';
 import {
     LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
     QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE, AUTH_CHECK, GALLERY_REQUEST,
-    GALLERY_SUCCESS, GALLERY_FAILURE
+    GALLERY_SUCCESS, GALLERY_FAILURE,SIGNUP_SUCCESS,
+    SIGNUP_REQUEST, SIGNUP_FAILURE
 } from '../actions';
 
 function auth(state = {
@@ -13,18 +14,18 @@ function auth(state = {
     isAuthenticated: localStorage.getItem('id_token') ? true : false
 }, action) {
     switch (action.type) {
-        case LOGIN_REQUEST:
+        case LOGIN_REQUEST, SIGNUP_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true,
                 isAuthenticated: false
             });
-        case LOGIN_SUCCESS:
+        case LOGIN_SUCCESS, SIGNUP_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthenticated: true,
                 errorMessage: ''
             });
-        case LOGIN_FAILURE:
+        case LOGIN_FAILURE, SIGNUP_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthenticated: false,
@@ -70,7 +71,7 @@ function userInfo(state = {
         role: 'Stormtrooper'
     }, action) {
     switch (action.type) {
-        case LOGIN_SUCCESS, AUTH_CHECK:
+        case LOGIN_SUCCESS, AUTH_CHECK, SIGNUP_SUCCESS:
             const jwt = localStorage.getItem('id_token');
             let decodedJwt = jwt ? jwt_decode(jwt) : null;
             // jwt check
@@ -78,7 +79,7 @@ function userInfo(state = {
                 username: decodedJwt ? decodedJwt.unique_name : '',
                 role: decodedJwt ? decodedJwt.role : ''
             });
-        case LOGOUT_SUCCESS, LOGIN_FAILURE, QUOTE_FAILURE:
+        case LOGOUT_SUCCESS, LOGIN_FAILURE, QUOTE_FAILURE, SIGNUP_FAILURE:
             localStorage.removeItem('id_token');
             return Object.assign({}, state, {
                 username: 'Guest',

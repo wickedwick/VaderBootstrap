@@ -8,11 +8,15 @@ import { CALL_API } from '../middleware/api';
 export const QUOTE_REQUEST = 'QUOTE_REQUEST';
 export const QUOTE_SUCCESS = 'QUOTE_SUCCESS';
 export const QUOTE_FAILURE = 'QUOTE_FAILURE';
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const AUTH_CHECK = 'AUTH_CHECK';
 export const GALLERY_REQUEST = 'GALLERY_REQUEST';
 export const GALLERY_SUCCESS = 'GALLERY_SUCCESS';
 export const GALLERY_FAILURE = 'GALLERY_FAILURE';
 import jwt_decode from 'jwt-decode';
+import { loadavg } from 'os';
 
 function requestLogin(creds) {
     return {
@@ -65,6 +69,33 @@ function galleryError(message) {
     };
 }
 
+function requestSignup(signupObj) {
+    return {
+        type: SIGNUP_REQUEST,
+        isFetching: true,
+        isAuthenticated: false,
+        signupObj
+    };
+}
+
+function signupError(message) {
+    return {
+        type: SIGNUP_FAILURE,
+        isFetching: false,
+        isAuthenticated: false,
+        message
+    }
+}
+
+function receiveSignup(user) {
+    return {
+        type: SIGNUP_SUCCESS,
+        isFetching: false,
+        isAuthenticated: true,
+        id_token: user
+    };
+}
+
 export function loginUser(creds) {
     let config = {
         method: 'POST',
@@ -86,6 +117,32 @@ export function loginUser(creds) {
                     localStorage.setItem('id_token', user);
                     localStorage.setItem('access_token', user);
                     dispatch(receiveLogin(user));
+                }
+            });
+    };
+}
+
+export function signupUser(signupObj) {
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+        body: `Email=${signupObj.emailAddress}&Password=${signupObj.password}&ConfirmPassword=${signupObj.confirmPassword}`
+    };
+
+    return dispatch => {
+        dispatch(requestSignup(signupObj));
+
+        return fetch('http://localhost:28826/api/Account/Register', config)
+            .then(response =>
+                response.json().then(user => ({ user, response}))
+            ).then(({ user, response }) => {
+                if (!response.ok) {
+                    dispatch(signupError(user.message));
+                    return Promise.reject(user);
+                } else {
+                    localStorage.setItem('id_token', user);
+                    localStorage.setItem('access_token', user);
+                    dispatch(receiveSignup(user));
                 }
             });
     };
